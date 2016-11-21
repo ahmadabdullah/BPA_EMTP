@@ -1,0 +1,60 @@
+      EQUIVALENCE  ( KUNIT6, LUNIT6 )                                   M35.   1
+C     FLAG-1.   BEGIN CLASS-1  /BLANK/  VARIABLES                       M10.   1
+C               (ALPHANUMERIC VARIABLES, CAPABLE OF STORING  A6  INFO). M10.   2
+      REAL*8           BUS1, BUS2, BUS3, BUS4, BUS5, BUS6               M42.   2
+      REAL*8           TRASH, BLANK, TERRA, USERID, BRANCH, COPY        M22.   1
+      REAL*8           CSEPAR, CHCONT, TEXCOL, TEXTA6                   M20.   1
+      REAL*8           DATE1, TCLOCK, VSTACS, ABUFF                     M16.   1
+      COMMON           BUS1, BUS2, BUS3, BUS4, BUS5, BUS6               M42.   3
+      COMMON           TRASH, BLANK, TERRA, USERID, BRANCH, COPY        M22.   2
+      COMMON          CSEPAR, CHCONT, TEXCOL(80), TEXTA6(15)            M22.   3
+      COMMON           DATE1(2), TCLOCK(2), VSTACS(24)                  M31.   1
+      COMMON ABUFF(20)                                                  M31.   2
+C     FLAG-2.   BEGIN CLASS-2  /BLANK/  VARIABLES                       M10.   3
+C               (FLOATING-POINT NUMERIC USAGE ONLY, WITH SCALARS        M10.   4
+C                PRECEDING ARRAYS).                                     M10.   5
+      COMMON            CI1, CK1, DELTAT, DELTA2, FREQCS                M42.   4
+      COMMON           EPSILN, XUNITS, AINCR, XMAXMX                    M42.   5
+      COMMON           ZNOLIM(2), EPSZNO, EPWARN, EPSTOP, T, TOLMAT     M38.   1
+      COMMON           TWOPI, TMAX, OMEGA, COPT, XOPT, SZPLT            M13.   1
+      COMMON          SZBED, SGLFIR, SIGMAX,  EPSUBA,  EPDGEL,  EPOMEG  M19.   2
+      COMMON        FMINFS, DELFFS, FMAXFS, TENERG, BEGMAX(6)           M31.   4
+      COMMON          TENM3, TENM6, UNITY, ONEHAF, PEAKND(3)            M27.   1
+      COMMON  FLTINF, FLZERO, DEGMIN, DEGMAX, STATFR, VOLTBC(50)        M31.   5
+      COMMON          FLSTAT(20), ANGLE, PU, DLTINV, SPEEDL             M39.   1
+C     FLAG-3.   BEGIN CLASS-3  /BLANK/  VARIABLES                       M10.   7
+C               (INTEGER-NUMERIC USAGE ONLY, WITH ARRAYS                M10.   8
+C                PRECEDING SCALARS).                                    M10.   9
+      COMMON          MONCAR(10)                                        M39.   2
+      COMMON          LUNIT1, LUNIT2, LUNIT3, LUNIT4, LUNIT5, LUNIT6    M15.   2
+      COMMON          LUNIT7, LUNIT8, LUNIT9, LUNT10, LUNT11            M20.   4
+      COMMON          LUNT12, LUNT13, LUNT14, LUNT15                    M39.   3
+      COMMON          NRIGHT, NFRFLD, KOLBEG, MAX99M                    M32.   1
+      COMMON          KPRCHG(6), MULTPR(5), IPNTV(11), INDTV(10)        M32.   2
+      COMMON          LSTAT(80), NBYTE(6), LUNSAV(15),IPRSOV(39)        M42.   6
+      COMMON          ICHECK, ILINE, INONL, IOUT, IPUNCH, IREAD         M39.   5
+      COMMON          KOL132, ISTEP, KWTSPY,ITYPE, IT1, IT2, IZERO      M39.   6
+      COMMON          KCOUNT, ISTEAD, LDATA, LBRNCH                     M39.   7
+      COMMON   LEXCT, LBUS, LYMAT, LSWTCH, LNONL, LCHAR, M4PLOT         M29.   2
+      COMMON      LPAST, LSIZE7, IPLOT, NCOMP, NV, LCOMP, NUMSM         M38.   2
+      COMMON           IFDEP, LTAILS, LFDEP, LWT, LAST, NPOWER, MAXPE   M42.   7
+      COMMON          LSIZ12, LSMOUT, LIMASS, IV                        M39.   8
+      COMMON   KTRLSW(8), NUM99,   KPARTB, LLBUFF, KANAL, NSMTH         M32.   4
+      COMMON          NTCSEX, NSTACS, MAXBUS, LASTOV, LTACST            M38.   4
+      COMMON          LHIST, IFX, ISUBC1,         INECHO, NOUTPR        M36.   2
+      COMMON                 KTAB, JFLSOS, NUMDCD, NUMUM, LSPCUM        M35.   2
+      COMMON          NPHCAS, IALTER, IXXXX, KTREF, MEMSAV, LISOFF      M39.   9
+      COMMON     KBURRO, IAVERG, LSIZ23, LSIZ26, NUMOUT, MOLDAT         M31.   7
+      COMMON   LSIZ27, LSIZ28, LTLABL, IWT,  IFDEP2, IDOUBL, IOUTIN     M32.   5
+      COMMON        IPUN, JST, JST1, MUNTSV(2), NUMSUB, MAXZNO          M37.   8
+      COMMON          IFSEM, LFSEM, IADD, LFD, NEXOUT(17)               M39.  10
+      COMMON          IOFGND, IOFBND,          MODOUT, LINT             VAX.   1
+      COMMON          IFTAIL, NCURR, IOFFD, ISPLOT, ISPRIN, MAXOUT      M39.  11
+      COMMON          KILL, IVOLT,         NCHAIN, IPRSUP               M37.  11
+      COMMON          INTINF,      KCONST, KSWTCH, IT, NTOT,  IBR       M42.   8
+      COMMON          LSYN,  KSSOUT, LOOPSS(13)                         M39.  12
+      COMMON          NUMREF, NWORD1, NWORD2, ILOAEP, LNPIN             M39.  13
+      COMMON          NTOT1, LIMSTP, INDSTP, NC                         M37.  13
+      COMMON          ICAT, NUMNVO,      NENERG                         M37.  14
+      COMMON  /COMTHL /  ANGTPE, NSWTPE
+         common   / comld /  newtac

@@ -1,0 +1,451 @@
+$ SET NOVERIFY
+$ set def disk00:[emtpd.bpa_code]
+$ FORTRAN/nodeb/opt/nolis BUILD1.FTN 
+$ FORTRAN/nodeb/opt/nolis BUILD2.FTN 
+$ FORTRAN/nodeb/opt/nolis CALC.FTN
+$ FORTRAN/nodeb/opt/nolis CALSTO.FTN 
+$ FORTRAN/nodeb/opt/nolis COMB.FTN 
+$ FORTRAN/nodeb/opt/nolis DATA.FTN   
+$ FORTRAN/nodeb/opt/nolis ELEC.FTN  
+$ FORTRAN/nodeb/opt/nolis ERRSTP.FTN
+$ FORTRAN/nodeb/opt/nolis INIT.FTN   
+$ FORTRAN/nodeb/opt/nolis PMODL.FTN 
+$ FORTRAN/nodeb/opt/nolis PSTMT.FTN  
+$ FORTRAN/nodeb/opt/nolis PTACS.FTN 
+$ FORTRAN/nodeb/opt/nolis PUSE.FTN  
+$ FORTRAN/nodeb/opt/nolis PUTIL1.FTN  
+$ FORTRAN/nodeb/opt/nolis PUTIL2.FTN  
+$ FORTRAN/nodeb/opt/nolis STEP.FTN  
+$ FORTRAN/nodeb/opt/nolis SYNSTP.FTN   
+$ FORTRAN/nodeb/opt/nolis NTACS1.FTN 
+$ FORTRAN/nodeb/opt/nolis NTACS1A.FTN  
+$ FORTRAN/nodeb/opt/nolis NTACS1B.FTN 
+$ FORTRAN/nodeb/opt/nolis NTACS2.FTN  
+$ FORTRAN/nodeb/opt/nolis NTACS3.FTN  
+$ FORTRAN/nodeb/opt/nolis DGNOST.FTN   
+%FORT-F-OPENIN, error opening DGNOST.FTN as input
+-RMS-E-FNF, file not found
+$ FORTRAN/nodeb/opt/nolis TREAD.FTN 
+$ FORTRAN/nodeb/opt/nolis USE1.FTN  
+$ FORTRAN/nodeb/opt/nolis USE2.FTN  
+$ FORTRAN/nodeb/opt/nolis XPR1.FTN    
+$ FORTRAN/nodeb/opt/nolis XPR2.FTN   
+$ FORTRAN/nodeb/opt/nolis XREF1.FTN  
+$ FORTRAN/nodeb/opt/nolis XREF2.FTN   
+$ FORTRAN/nodeb/opt/nolis MAIN00.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+ 9002 RETURN ! NEVER-USED NICITY TO AVOID IBM VS FORTRAN WARNING        M39.  53
+.^
+%FORT-I-NOPATH, No path to this statement
+at line number 234 in file DISK00:[EMTPD.BPA_CODE]MAIN00.FOR;65
+
+      Z = DATAN2 ( X, Y )                                               M33.  66
+......^
+%FORT-W-UNINIT, Variable Z is used before its value has been defined
+at line number 1101 in file DISK00:[EMTPD.BPA_CODE]MAIN00.FOR;65
+
+      Y = DLOG(X)                                                       M33.  64
+......^
+%FORT-W-UNINIT, Variable Y is used before its value has been defined
+at line number 1090 in file DISK00:[EMTPD.BPA_CODE]MAIN00.FOR;65
+
+      Y = DSQRT(X)                                                      M32. 196
+................^
+%FORT-W-UNINIT, Variable X is used before its value has been defined
+at line number 1087 in file DISK00:[EMTPD.BPA_CODE]MAIN00.FOR;65
+$ FORTRAN/nodeb/opt/nolis MAIN10.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+ 6508 NDX1 = KDEV2  -  N1                                               M39. 154
+.............^
+%FORT-W-UNINIT, Variable KDEV2 is used before its value has been defined
+at line number 1168 in file DISK00:[EMTPD.BPA_CODE]MAIN10.FOR;64
+$ FORTRAN/nodeb/opt/nolis OVER1.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+     1  INSUP(KJSUP+N), INSUP(KKSUP+N), N=1, NSUP )                     M39. 539
+..............^
+%FORT-W-UNINIT, Variable KJSUP is used before its value has been defined
+at line number 2626 in file DISK00:[EMTPD.BPA_CODE]OVER1.FOR;68
+
+     1  INSUP(KJSUP+N), INSUP(KKSUP+N), N=1, NSUP )                     M39. 539
+..............................^
+%FORT-W-UNINIT, Variable KKSUP is used before its value has been defined
+at line number 2626 in file DISK00:[EMTPD.BPA_CODE]OVER1.FOR;68
+$ FORTRAN/nodeb/opt/nolis OVER2.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      IF (ILUIS .NE. 0) WRITE (LUNIT6, 1067)                             M44. 143
+..........^
+%FORT-W-UNINIT, Variable ILUIS is used before its value has been defined
+at line number 3142 in file DISK00:[EMTPD.BPA_CODE]OVER2.FOR;91
+$ FORTRAN/nodeb/opt/nolis OVER5.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      N1 = NTOTAC - NTACB                                               M32.2754
+....................^
+%FORT-W-UNINIT, Variable NTACB is used before its value has been defined
+at line number 1979 in file DISK00:[EMTPD.BPA_CODE]OVER5.FOR;65
+$ FORTRAN/nodeb/opt/nolis OVER6.for
+$ FORTRAN/nodeb/opt/nolis OVER7.for
+$ FORTRAN/nodeb/opt/nolis OVER8.for
+
+      IF (COPT .NE. 0.0) C(ITCAP) = C(ITCAP)*COPT*TWOPI                 M38.2181
+...........................^
+%FORT-W-UNINIT, Variable ITCAP is used before its value has been defined
+at line number 2796 in file DISK00:[EMTPD.BPA_CODE]OVER8.FOR;77
+
+2015  NHST = INDHST(K)                                                  M44. 298
+^
+%FORT-I-NOPATH, No path to this statement
+at line number 702 in file DISK00:[EMTPD.BPA_CODE]OVER8.FOR;77
+$ FORTRAN/nodeb/opt/nolis OVER9.for
+
+      LOCATN(I,J)=(J*J-J)/2+I                                           M42.5880
+^
+%FORT-I-SFUNCALLED, Statement function LOCATN is never called
+at line number 11 in file DISK00:[EMTPD.BPA_CODE]OVER9.FOR;62
+$ FORTRAN/nodeb/opt/nolis OVER10.for
+$ FORTRAN/nodeb/opt/nolis OVER11.for
+
+ 7657 K1 = KDEPSW( LSWTCH + I )                                        M39.1588
+.......................................................................^
+%FORT-F-MISSDEL, Missing operator or delimiter symbol
+at line number 420 in file DISK00:[EMTPD.BPA_CODE]OVER11.FOR;77
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+$ FORTRAN/nodeb/opt/nolis OVER12.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      NDX1 = KROWCS + I                                                 M37.4208
+.............^
+%FORT-W-UNINIT, Variable KROWCS is used before its value has been defined
+at line number 1616 in file DISK00:[EMTPD.BPA_CODE]OVER12.FOR;73
+$ FORTRAN/nodeb/opt/nolis OVER13.for
+
+      IF ( IPRCBL .GT. 0 )                                              M44. 943
+...........^
+%FORT-W-UNINIT, Variable IPRCBL is used before its value has been defined
+at line number 761 in file DISK00:[EMTPD.BPA_CODE]OVER13.FOR;69
+
+      DO 8214 I=1,NPHS                                                  M44.1033
+..................^
+%FORT-W-UNINIT, Variable NPHS is used before its value has been defined
+at line number 847 in file DISK00:[EMTPD.BPA_CODE]OVER13.FOR;69
+
+      WINIC = CK1 * TPI                                                         
+....................^
+%FORT-W-UNINIT, Variable TPI is used before its value has been defined
+at line number 349 in file DISK00:[EMTPD.BPA_CODE]OVER13.FOR;69
+$ FORTRAN/nodeb/opt/nolis OVER14.for
+
+      NK1 = LHIST + IFD                                                 M44. 632
+....................^
+%FORT-W-UNINIT, Variable IFD is used before its value has been defined
+at line number 301 in file DISK00:[EMTPD.BPA_CODE]OVER14.FOR;65
+
+      IF ( NK1 .GE. IHIST+LFD/2 )                                       M44. 653
+....................^
+%FORT-W-UNINIT, Variable IHIST is used before its value has been defined
+at line number 342 in file DISK00:[EMTPD.BPA_CODE]OVER14.FOR;65
+
+      XLL = SKIR * DBLPR1 + SK1I * DBLPR2                               M44. 663
+............^
+%FORT-W-UNINIT, Variable SKIR is used before its value has been defined
+at line number 352 in file DISK00:[EMTPD.BPA_CODE]OVER14.FOR;65
+$ FORTRAN/nodeb/opt/nolis OVER15.for
+$ FORTRAN/nodeb/opt/nolis OVER16.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+ 7755 KILL = 229                                                        M37.5181
+.^
+%FORT-I-NOPATH, No path to this statement
+at line number 1272 in file DISK00:[EMTPD.BPA_CODE]OVER16.FOR;73
+
+ 7766 N15  = ISUBEG(KNODE)                                              M37.5185
+.^
+%FORT-I-NOPATH, No path to this statement
+at line number 1277 in file DISK00:[EMTPD.BPA_CODE]OVER16.FOR;73
+$ FORTRAN/nodeb/opt/nolis OVER20.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      IF ( KWTSPY .EQ. 1 )  GO TO 9000                                          
+...........^
+%FORT-W-UNINIT, Variable KWTSPY is used before its value has been defined
+at line number 7853 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+
+      IF ( IPRSUP .LE. 0 )  GO TO 7324                                          
+...........^
+%FORT-W-UNINIT, Variable IPRSUP is used before its value has been defined
+at line number 7569 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+
+      N24 = NUMNVO + NC + NSMOUT + IOUTCS + NUMOUT                              
+..........................^
+%FORT-W-UNINIT, Variable NSMOUT is used before its value has been defined
+at line number 3308 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+
+      IF ( N17 .GT. NUMNV0 )  N17 = NUMNVO                                      
+....................^
+%FORT-W-UNINIT, Variable NUMNV0 is used before its value has been defined
+at line number 3326 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+
+     1    SPTACS(KUD1+I),  SPTACS(KUD3+I),  SPTACS(KUD2+I)              M36.2279
+..................................^
+%FORT-W-UNINIT, Variable KUD3 is used before its value has been defined
+at line number 2389 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+
+     1    SPTACS(KUD1+I),  SPTACS(KUD3+I),  SPTACS(KUD2+I)              M36.2279
+...................................................^
+%FORT-W-UNINIT, Variable KUD2 is used before its value has been defined
+at line number 2389 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+
+ 3212 CALL FREIN1 ( BUFF77, INCHLP )                                    M38.3898
+.^
+%FORT-I-NOPATH, No path to this statement
+at line number 1592 in file DISK00:[EMTPD.BPA_CODE]OVER20.FOR;67
+$ FORTRAN/nodeb/opt/nolis OVER29.for
+$ FORTRAN/nodeb/opt/nolis OVER31.for
+$ FORTRAN/nodeb/opt/nolis OVER39.for
+
+      WRITE(LUNIT6,7083)              !  THL                                 
+............^
+%FORT-W-UNINIT, Variable LUNIT6 is used before its value has been defined
+at line number 1929 in file DISK00:[EMTPD.BPA_CODE]OVER39.FOR;66
+$ FORTRAN/nodeb/opt/nolis OVER41.for
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+
+      DIMENSION   FKAR1(1), FKAR2(1)                                    M35.  29
+..................^
+%FORT-W-MISALIGN, Alignment of variable or array is inconsistent with its data type
+at line number 29 in file DISK00:[EMTPD.BPA_CODE]DEKSPY.FOR;62
+$ FORTRAN/nodeb/opt/nolis OVER42.for
+
+      IF( ZK( 7 ) .EQ. VSTART )  GO  TO  570                                    
+.......................^
+%FORT-W-UNINIT, Variable VSTART is used before its value has been defined
+at line number 1164 in file DISK00:[EMTPD.BPA_CODE]OVER42.FOR;62
+$ FORTRAN/nodeb/opt/nolis OVER44.for
+
+      IF (IDEBUG.EQ.0) GO TO 8100                                       M43.3404
+..........^
+%FORT-W-UNINIT, Variable IDEBUG is used before its value has been defined
+at line number 1133 in file DISK00:[EMTPD.BPA_CODE]OVER44.FOR;76
+$ FORTRAN/nodeb/opt/nolis OVER45.for
+$ FORTRAN/nodeb/opt/nolis OVER47.for
+
+      IF ( ZNVREF .NE. 0.0 )  D1 = 50. * ZNVREF                         M35.9709
+...........^
+%FORT-W-UNINIT, Variable ZNVREF is used before its value has been defined
+at line number 3685 in file DISK00:[EMTPD.BPA_CODE]OVER47.FOR;62
+
+      IF ( VFREQ(1) .NE. CHF ) GO TO 2004                               VAX.4737
+.........................^
+%FORT-W-UNINIT, Variable CHF is used before its value has been defined
+at line number 2237 in file DISK00:[EMTPD.BPA_CODE]OVER47.FOR;62
+$ FORTRAN/nodeb/opt/nolis OVER51.for
+$ FORTRAN/nodeb/opt/nolis OVER52.for
+$ FORTRAN/nodeb/opt/nolis OVER53.for
+$ FORTRAN/nodeb/opt/nolis OVER54.for
+$ FORTRAN/nodeb/opt/nolis OVER55.for
+
+      IF ( KILSAV  .EQ.  92 )    GO TO 6767                                18085
+...........^
+%FORT-W-UNINIT, Variable KILSAV is used before its value has been defined
+at line number 1120 in file DISK00:[EMTPD.BPA_CODE]OVER55.FOR;63
+$ FORTRAN/nodeb/opt/nolis  Blockdspy.for 
+$! FORTRAN  DATE44
+$! FORTRAN  TIME44
+$! FORTRAN  VARDIM
+$! LINK  VARDIM+DATE44+TIME44
+  EOHCRWS      job terminated at 30-DEC-1993 09:10:19.85
+
+  Accounting information:
+  Buffered I/O count:            3548         Peak working set size:   8192
+  Direct I/O count:              3714         Peak page file size:    61376
+  Page faults:                1278598         Mounted volumes:            0
+  Charged CPU time:           0 00:11:11.45   Elapsed time:     0 00:14:58.13

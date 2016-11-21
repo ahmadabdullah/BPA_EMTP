@@ -1,0 +1,287 @@
+      BLOCK DATA tdata
+      INCLUDE  'tacsto.ins'
+      DATA ctbl(   1:  26) / 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' /
+      DATA ctbl(  27:  37) / '0123456789_' /
+      DATA ctbl(  39:  48) / '"[](){}+-*' /
+      DATA ctbl(  50:  64) / '**\:=:=><...,; ' /
+      DATA ctbl(  66:  66) / '_' /
+      DATA ctbl(  67:  67) / '!' /
+      DATA ctbl(  68:  74) / 'COMMENT' /
+      DATA ctbl(  75:  84) / 'ENDCOMMENT' /
+      DATA ctbl(  85:  96) / 'ILLUSTRATION' /
+      DATA ctbl(  97: 111) / 'ENDILLUSTRATION' /
+      DATA ctbl( 112: 121) / '__________' /
+      DATA ctbl( 122: 142) / 'ENDRECORD____________' /
+      DATA ctbl( 143: 149) / 'ENDTACS' /
+      DATA ctbl( 150: 155) / 'RECORD' /
+      DATA ctbl( 156: 161) / 'IXDATA' /
+      DATA ctbl( 162: 166) / 'MODEL' /
+      DATA ctbl( 167: 174) / 'ENDMODEL' /
+      DATA ctbl( 175: 181) / 'FORTRAN' /
+      DATA ctbl( 182: 185) / 'IXIN' /
+      DATA ctbl( 186: 190) / 'IXOUT' /
+      DATA ctbl( 191: 195) / 'IXVAR' /
+      DATA ctbl( 196: 203) / 'FUNCTION' /
+      DATA ctbl( 204: 212) / 'POINTLIST' /
+      DATA ctbl( 213: 215) / 'FUN' /
+      DATA ctbl( 216: 220) / 'IXARG' /
+      DATA ctbl( 221: 224) / 'INIT' /
+      DATA ctbl( 225: 231) / 'ENDINIT' /
+      DATA ctbl( 232: 235) / 'EXEC' /
+      DATA ctbl( 236: 242) / 'ENDEXEC' /
+      DATA ctbl( 243: 247) / 'CONST' /
+      DATA ctbl( 248: 251) / 'DATA' /
+      DATA ctbl( 252: 254) / 'VAR' /
+      DATA ctbl( 255: 259) / 'INPUT' /
+      DATA ctbl( 260: 265) / 'OUTPUT' /
+      DATA ctbl( 266: 272) / 'HISTORY' /
+      DATA ctbl( 273: 280) / 'TIMESTEP' /
+      DATA ctbl( 281: 293) / 'INTERPOLATION' /
+      DATA ctbl( 294: 299) / 'DEGREE' /
+      DATA ctbl( 300: 303) / '____' /
+      DATA ctbl( 304: 309) / 'DIFFEQ' /
+      DATA ctbl( 310: 316) / 'LAPLACE' /
+      DATA ctbl( 317: 318) / 'IF' /
+      DATA ctbl( 319: 322) / 'THEN' /
+      DATA ctbl( 323: 326) / 'ELSE' /
+      DATA ctbl( 327: 331) / 'ELSIF' /
+      DATA ctbl( 332: 336) / 'ENDIF' /
+      DATA ctbl( 337: 341) / 'WHILE' /
+      DATA ctbl( 342: 349) / 'ENDWHILE' /
+      DATA ctbl( 350: 352) / 'FOR' /
+      DATA ctbl( 353: 358) / 'ENDFOR' /
+      DATA ctbl( 359: 360) / 'DO' /
+      DATA ctbl( 361: 365) / 'ENDDO' /
+      DATA ctbl( 366: 369) / 'REDO' /
+      DATA ctbl( 370: 376) / 'COMBINE' /
+      DATA ctbl( 377: 386) / 'ENDCOMBINE' /
+      DATA ctbl( 387: 394) / 'SEQUENCE' /
+      DATA ctbl( 395: 405) / 'ENDSEQUENCE' /
+      DATA ctbl( 406: 410) / 'WRITE' /
+      DATA ctbl( 411: 418) / 'ENDWRITE' /
+      DATA ctbl( 419: 423) / 'ERROR' /
+      DATA ctbl( 424: 427) / 'STOP' /
+      DATA ctbl( 428: 430) / 'USE' /
+      DATA ctbl( 431: 436) / 'ENDUSE' /
+      DATA ctbl( 437: 439) / 'SUM' /
+      DATA ctbl( 440: 444) / 'DERIV' /
+      DATA ctbl( 445: 452) / 'INTEGRAL' /
+      DATA ctbl( 453: 455) / 'POL' /
+      DATA ctbl( 456: 457) / 'TO' /
+      DATA ctbl( 458: 459) / 'BY' /
+      DATA ctbl( 460: 461) / 'AS' /
+      DATA ctbl( 462: 463) / 'IS' /
+      DATA ctbl( 464: 467) / 'SAVE' /
+      DATA ctbl( 468: 470) / 'SET' /
+      DATA ctbl( 471: 478) / 'PREVIOUS' /
+      DATA ctbl( 479: 483) / 'STATE' /
+      DATA ctbl( 484: 487) / 'WHEN' /
+      DATA ctbl( 488: 489) / 'OR' /
+      DATA ctbl( 490: 492) / 'AND' /
+      DATA ctbl( 493: 495) / 'NOT' /
+      DATA ctbl( 496: 498) / 'MOD' /
+      DATA ctbl( 499: 501) / 'VAL' /
+      DATA ctbl( 502: 505) / 'DFLT' /
+      DATA ctbl( 506: 509) / 'DMIN' /
+      DATA ctbl( 510: 513) / 'DMAX' /
+      DATA ctbl( 514: 523) / '__________' /
+      DATA ctbl( 524: 533) / '__________' /
+      DATA ctbl( 534: 543) / '__________' /
+      DATA ctbl( 544: 553) / '__________' /
+      DATA ctbl( 554: 563) / '__________' /
+      DATA ctbl( 564: 566) / 'ABS' /
+      DATA ctbl( 567: 570) / 'SQRT' /
+      DATA ctbl( 571: 573) / 'EXP' /
+      DATA ctbl( 574: 575) / 'LN' /
+      DATA ctbl( 576: 580) / 'LOG10' /
+      DATA ctbl( 581: 584) / 'LOG2' /
+      DATA ctbl( 585: 589) / 'RECIP' /
+      DATA ctbl( 590: 598) / 'FACTORIAL' /
+      DATA ctbl( 599: 603) / 'TRUNC' /
+      DATA ctbl( 604: 608) / 'FRACT' /
+      DATA ctbl( 609: 613) / 'ROUND' /
+      DATA ctbl( 614: 617) / 'SIGN' /
+      DATA ctbl( 618: 620) / 'RAD' /
+      DATA ctbl( 621: 623) / 'DEG' /
+      DATA ctbl( 624: 629) / 'RANDOM' /
+      DATA ctbl( 630: 632) / 'SIN' /
+      DATA ctbl( 633: 635) / 'COS' /
+      DATA ctbl( 636: 638) / 'TAN' /
+      DATA ctbl( 639: 642) / 'ASIN' /
+      DATA ctbl( 643: 646) / 'ACOS' /
+      DATA ctbl( 647: 650) / 'ATAN' /
+      DATA ctbl( 651: 654) / 'SINH' /
+      DATA ctbl( 655: 658) / 'COSH' /
+      DATA ctbl( 659: 662) / 'TANH' /
+      DATA ctbl( 663: 667) / 'ASINH' /
+      DATA ctbl( 668: 672) / 'ACOSH' /
+      DATA ctbl( 673: 677) / 'ATANH' /
+      DATA ctbl( 678: 682) / 'ATAN2' /
+      DATA ctbl( 683: 687) / 'BINOM' /
+      DATA ctbl( 688: 693) / 'PERMUT' /
+      DATA ctbl( 694: 696) / 'MIN' /
+      DATA ctbl( 697: 699) / 'MAX' /
+      DATA ctbl( 700: 703) / 'NORM' /
+      DATA ctbl( 704: 707) / 'BOOL' /
+      DATA ctbl( 708: 711) / 'NAND' /
+      DATA ctbl( 712: 714) / 'NOR' /
+      DATA ctbl( 715: 717) / 'XOR' /
+      DATA ctbl( 718: 727) / 'AND_______' /
+      DATA ctbl( 728: 737) / 'OR________' /
+      DATA ctbl( 738: 747) / '__________' /
+      DATA ctbl( 748: 756) / '__________' /
+      DATA ctbl( 757: 763) / 'PREDVAL' /
+      DATA ctbl( 764: 770) / 'PASTVAL' /
+      DATA ctbl( 771: 778) / 'PASTTIME' /
+      DATA ctbl( 779: 786) / 'PREDTIME' /
+      DATA ctbl( 787: 793) / 'PREVVAL' /
+      DATA ctbl( 794: 800) / 'BACKVAL' /
+      DATA ctbl( 801: 808) / 'BACKTIME' /
+      DATA ctbl( 809: 813) / 'DERIV' /
+      DATA ctbl( 814: 819) / 'DERIV2' /
+      DATA ctbl( 820: 823) / '____' /
+      DATA ctbl( 824: 824) / 'V' /
+      DATA ctbl( 825: 825) / 'I' /
+      DATA ctbl( 826: 829) / 'ELEC' /
+      DATA ctbl( 830: 835) / 'SWITCH' /
+      DATA ctbl( 836: 840) / 'IMSSV' /
+      DATA ctbl( 841: 845) / 'IMSSI' /
+      DATA ctbl( 846: 855) / 'HISTDEF___' /
+      DATA ctbl( 856: 865) / 'HISTVAL___' /
+      DATA ctbl( 866: 875) / '__________' /
+      DATA ctbl( 876: 885) / '__________' /
+      DATA ctbl( 886: 895) / '__________' /
+      DATA ctbl( 896: 902) / 'MINSTEP' /
+      DATA ctbl( 903: 909) / 'MAXSTEP' /
+      DATA ctbl( 910: 916) / 'ENDTIME' /
+      DATA ctbl( 917: 924) / 'FULLSTEP' /
+      DATA ctbl( 925: 932) / 'TIMESTEP' /
+      DATA ctbl( 933: 940) / 'PREVTIME' /
+      DATA ctbl( 941: 947) / 'SIMTIME' /
+      DATA ctbl( 948: 951) / 'PATH' /
+      DATA ctbl( 952: 961) / '__________' /
+      DATA ctbl( 962: 971) / '__________' /
+      DATA ctbl( 972: 981) / '__________' /
+      DATA ctbl( 982: 991) / '__________' /
+      DATA ctbl( 992: 1001) / '__________' /
+      DATA ctbl( 1002: 1002) / 'T' /
+      DATA ctbl( 1003: 1011) / 'STARTTIME' /
+      DATA ctbl( 1012: 1019) / 'STOPTIME' /
+      DATA ctbl( 1020: 1028) / 'STARTSTEP' /
+      DATA ctbl( 1029: 1038) / '__________' /
+      DATA ctbl( 1039: 1048) / '__________' /
+      DATA ctbl( 1049: 1058) / '__________' /
+      DATA ctbl( 1059: 1068) / '__________' /
+      DATA ctbl( 1069: 1078) / '__________' /
+      DATA ctbl( 1079: 1080) / 'PI' /
+      DATA ctbl( 1081: 1083) / 'INF' /
+      DATA ctbl( 1084: 1088) / 'FALSE' /
+      DATA ctbl( 1089: 1092) / 'TRUE' /
+      DATA ctbl( 1093: 1094) / 'NO' /
+      DATA ctbl( 1095: 1097) / 'YES' /
+      DATA ctbl( 1098: 1101) / 'OPEN' /
+      DATA ctbl( 1102: 1107) / 'CLOSED' /
+      DATA ctbl( 1108: 1110) / 'OFF' /
+      DATA ctbl( 1111: 1112) / 'ON' /
+      DATA ctbl( 1113: 1122) / 'UNDEFINED_' /
+      DATA ctbl( 1123: 1132) / '__________' /
+      DATA ctbl( 1133: 1142) / '__________' /
+      DATA ctbl( 1143: 1152) / '__________' /
+      DATA ctbl( 1153: 1162) / '__________' /
+      DATA ctbl( 1163: 1169) / 'INTEGER' /
+      DATA ctbl( 1170: 1173) / 'REAL' /
+      DATA ctbl( 1174: 1178) / 'RATIO' /
+      DATA ctbl( 1179: 1183) / 'BYTES' /
+      DATA ctbl( 1184: 1187) / 'PAGE' /
+      DATA ctbl( 1188: 1192) / 'PAGES' /
+      DATA ctbl( 1193: 1202) / 'STORAGE___' /
+      DATA ctbl( 1203: 1212) / 'ENDSTORAGE' /
+      DATA ctbl( 1213: 1222) / '__________' /
+      DATA ctbl( 1223: 1232) / '__________' /
+      DATA (isto(i),i=1,10) / 39,297,18,379,9,419,4,447,11,465 /
+      DATA (isto(i),i=11,20) / 1,1, 2,1, 3,1, 4,1, 5,1 /
+      DATA (isto(i),i=21,30) / 6,1, 7,1, 8,1, 9,1, 10,1 /
+      DATA (isto(i),i=31,40) / 11,1, 12,1, 13,1, 14,1, 15,1 /
+      DATA (isto(i),i=41,50) / 16,1, 17,1, 18,1, 19,1, 20,1 /
+      DATA (isto(i),i=51,60) / 21,1, 22,1, 23,1, 24,1, 25,1 /
+      DATA (isto(i),i=61,70) / 26,1, 27,1, 28,1, 29,1, 30,1 /
+      DATA (isto(i),i=71,80) / 31,1, 32,1, 33,1, 34,1, 35,1 /
+      DATA (isto(i),i=81,90) / 36,1, 37,1, 38,1, 39,1, 40,1 /
+      DATA (isto(i),i=91,100) / 41,1, 42,1, 43,1, 44,1, 45,1 /
+      DATA (isto(i),i=101,110) / 46,1, 47,1, 48,1, 49,1, 50,2 /
+      DATA (isto(i),i=111,120) / 52,1, 53,2, 55,1, 56,1, 57,1 /
+      DATA (isto(i),i=121,130) / 58,1, 59,1, 60,2, 62,1, 63,1 /
+      DATA (isto(i),i=131,140) / 64,1, 65,1, 66,1, 67,1, 68,7 /
+      DATA (isto(i),i=141,150) / 75,10, 85,12, 97,15, 112,10, 122,9 /
+      DATA (isto(i),i=151,160) / 143,7, 150,6, 156,6, 162,5, 167,8 /
+      DATA (isto(i),i=161,170) / 175,7, 182,4, 186,5, 191,5, 196,8 /
+      DATA (isto(i),i=171,180) / 204,9, 213,3, 216,5, 221,4, 225,7 /
+      DATA (isto(i),i=181,190) / 232,4, 236,7, 243,5, 248,4, 252,3 /
+      DATA (isto(i),i=191,200) / 255,5, 260,6, 266,7, 273,8, 281,13 /
+      DATA (isto(i),i=201,210) / 294,6, 300,4, 304,6, 310,7, 317,2 /
+      DATA (isto(i),i=211,220) / 319,4, 323,4, 327,5, 332,5, 337,5 /
+      DATA (isto(i),i=221,230) / 342,8, 350,3, 353,6, 359,2, 361,5 /
+      DATA (isto(i),i=231,240) / 366,4, 370,7, 377,10, 387,8, 395,11 /
+      DATA (isto(i),i=241,250) / 406,5, 411,8, 419,5, 424,4, 428,3 /
+      DATA (isto(i),i=251,260) / 431,6, 437,3, 440,5, 445,8, 453,3 /
+      DATA (isto(i),i=261,270) / 456,2, 458,2, 460,2, 462,2, 464,4 /
+      DATA (isto(i),i=271,280) / 468,3, 471,8, 479,5, 484,4, 488,2 /
+      DATA (isto(i),i=281,290) / 490,3, 493,3, 496,3, 499,3, 502,4 /
+      DATA (isto(i),i=291,300) / 506,4, 510,4, 514,10, 524,10, 0,0 /
+      DATA (isto(i),i=301,310) / 534,10, 544,10, 554,10, 564,3, 567,4 /
+      DATA (isto(i),i=311,320) / 571,3, 574,2, 576,5, 581,4, 585,5 /
+      DATA (isto(i),i=321,330) / 590,9, 599,5, 604,5, 609,5, 614,4 /
+      DATA (isto(i),i=331,340) / 618,3, 621,3, 624,6, 630,3, 633,3 /
+      DATA (isto(i),i=341,350) / 636,3, 639,4, 643,4, 647,4, 651,4 /
+      DATA (isto(i),i=351,360) / 655,4, 659,4, 663,5, 668,5, 673,5 /
+      DATA (isto(i),i=361,370) / 678,5, 683,5, 688,6, 694,3, 697,3 /
+      DATA (isto(i),i=371,380) / 700,4, 704,4, 708,4, 712,3, 715,3 /
+      DATA (isto(i),i=381,390) / 718,3, 728,2, 738,10, 748,9, 757,7 /
+      DATA (isto(i),i=391,400) / 764,7, 771,8, 779,8, 787,7, 794,7 /
+      DATA (isto(i),i=401,410) / 801,8, 809,5, 814,6, 820,4, 824,1 /
+      DATA (isto(i),i=411,420) / 825,1, 826,4, 830,6, 836,5, 841,5 /
+      DATA (isto(i),i=421,430) / 846,7, 856,7, 866,10, 876,10, 886,10/
+      DATA (isto(i),i=431,440) / 896,7, 903,7, 910,7, 917,8, 925,8 /
+      DATA (isto(i),i=441,450) / 933,8, 941,7, 948,4, 952,10, 962,10 /
+      DATA (isto(i),i=451,460) / 972,10, 982,10, 992,10, 1002,1, 1003,9/
+      DATA (isto(i),i=461,470) / 1012,8,1020,9,1029,10,1039,10,1049,10/
+      DATA (isto(i),i=471,480) / 1059,10,1069,10,1079,2,1081,3,1084,5/
+      DATA (isto(i),i=481,490) / 1089,4,1093,2,1095,3,1098,4,1102,6/
+      DATA (isto(i),i=491,500) / 1108,3,1111,2,1113,9,1123,10,1133,10 /
+      DATA (isto(i),i=501,510) / 1143,10,1153,10,1163,7,1170,4,1174,5/
+      DATA (isto(i),i=511,520) / 1179,5,1184,4,1188,5,1193,7,1203,10/
+      DATA (isto(i),i=521,524) / 1213,10,1223,10 /
+      DATA (isto(i),i=525,799) / 275*888888888 /
+      DATA unit05 /   5  /
+      DATA unit06 /   6  /
+      DATA unit08 /  28  /
+      DATA unit09 /  29  /
+      DATA bkfile /  39  /
+      DATA bratio   / 2.0 /
+      DATA fltlen   / 8 /
+      DATA intlen   / 4 /
+      DATA ctblen /  1232 /
+      DATA strcnt / 514 /
+      DATA ishcnt /  64 /
+      DATA iempty /   1 /
+      DATA intcnt / 211 /
+      DATA base1  /  10 /
+      DATA base2  /   0 /
+      DATA cptr   /1500 /
+      DATA rempty /  10 /
+      DATA reacnt /  30 /
+      DATA inull  / 888888888 /
+      DATA iinf /2000000000 /
+      DATA ten    /10.0D0 /
+      DATA zero   / 0.0D0 /
+      DATA one    / 1.0D0 /
+      DATA two    / 2.0D0 /
+      DATA half   / 0.5D0 /
+      DATA rnull  / 88888.88888D0 /
+      DATA rinf   / 1.0D18 /
+      DATA divzro / 1.0D-18 /
+      DATA rmargn / 1.0D-8 /
+      DATA pi     / 3.141592653589793D0 /  
+      data stoflt  / 9000 /    ! WSM + THL manual modification for BPA EMTP
+      data stocha  / 9000 /    ! WSM + THL manual modification for BPA EMTP
+      END

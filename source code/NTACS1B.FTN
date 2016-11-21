@@ -1,0 +1,117 @@
+      SUBROUTINE nTACS1B        
+      IMPLICIT REAL*8 (A-H, O-Z),  INTEGER*4 (I-N)
+      INCLUDE  'tacsto.ins'   
+      INCLUDE  'blkcom.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'tacsar.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'labcom.ins'                     ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B014 /   SPTACS(  29 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B063 /   TEXVEC(1000 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      CHARACTER*6  TEXVEC                   ! WSM + THL manual modification for BPA EMTP
+      EQUIVALENCE    ( LSTAT ( 67),  MAXNIU )
+      EQUIVALENCE    ( LSTAT ( 68),  MAXNUK )
+CCCC      EQUIVALENCE    ( MONCAR(  5),  IOUTCS )   ! WSM + THL manual modification for BPA EMTP
+      character*6  hus1   ! WSM + THL manual modification for BPA EMTP
+      sptr=sptr-1
+      isto(sptr)=env
+      env=datenv
+      NUK=isto(env+11)
+      env=isto(env+36)
+      i=0
+ 3001 IF(.NOT.(env.GT.0)) GOTO 3000
+       i=i+1
+       i1=isto(env+2)
+       i2=isto(env+3)-1
+CCCC   BUS1=BLANK     ! WSM + THL manual modification for BPA EMTP
+       hus1 = ' '     ! WSM + THL manual modification for BPA EMTP
+       j=0
+ 3011  IF(.NOT.(j.LT.i1)) GOTO 3010
+        j=j+1
+        HUS1(j:j)=csto(i2+j)
+        GOTO 3011
+ 3010  CONTINUE
+       n=0
+      read(hus1,7398) real8
+ 7398 format ( a6 )
+       CALL NAMEA6 ( real8, n )   ! WSM + THL manual modification for BPA EMTP
+       ILNTAB(KLNTAB+i)=n
+       env=isto(env)
+       GOTO 3001
+ 3000 CONTINUE
+      env=isto(sptr)
+      IOUTCS=0
+      env=isto(env+1)
+      i=0
+ 3021 IF(.NOT.(env.GT.0)) GOTO 3020
+       i1=isto(env+4)
+       i2=isto(env+5)-1
+CCCC   BUS1=BLANK     ! WSM + THL manual modification for BPA EMTP
+       hus1 = ' '     ! WSM + THL manual modification for BPA EMTP
+       j=0
+ 3031  IF(.NOT.(j.LT.i1)) GOTO 3030
+        j=j+1
+        HUS1(j:j)=csto(i2+j)
+        GOTO 3031
+ 3030  CONTINUE
+      read(hus1,7398) real8
+       n=0
+       CALL NAMEA6 ( real8, n )   ! WSM + THL manual modification for BPA EMTP
+       IF(.NOT.(NUK.LT.n-1)) GOTO 5030
+        NUK=n-1   !only in BPA EMTP
+        ILNTAB(KLNTAB+NUK)=n
+ 5030  CONTINUE
+       IOUTCS=IOUTCS+1
+       JOUT(KJOUT+IOUTCS)=n-1   !ONLY IN BPA EMTP
+       isto(env+6)=n-1   !ONLY IN BPA EMTP
+       env=isto(env+0)
+       GOTO 3021
+ 3020 CONTINUE
+      env=isto(sptr)
+      sptr=sptr+1
+      IF(NUK.GT.MAXNUK) STOP 'Kill 122 on MAXNUK in NTACS1B.'
+      KALIU=KLNTAB+NUK
+      NIU=0
+      sptr=sptr-1
+      isto(sptr)=env
+      env=isto(env+4)
+      k=0
+ 3041 IF(.NOT.(env.GT.0 .AND. k.EQ.0)) GOTO 3040
+       IF(.NOT.(isto(env+1).EQ.1)) GOTO 5001
+        k=1
+        env=isto(env+2)
+        GOTO 5000
+ 5001  CONTINUE
+        env=isto(env+0)
+ 5000  CONTINUE
+       GOTO 3041
+ 3040 CONTINUE
+      IF(.NOT.(k.GT.0)) GOTO 5011
+ 3051  IF(.NOT.(env.GT.0)) GOTO 3050
+        NIU=NIU+1
+CCCC   BUS1=BLANK     ! WSM + THL manual modification for BPA EMTP
+       hus1 = ' '     ! WSM + THL manual modification for BPA EMTP
+        i1=isto(env+5)
+        i2=isto(env+6)-1
+        j=0
+ 3061   IF(.NOT.(j.LT.i1)) GOTO 3060
+         j=j+1
+         HUS1(j:j)=csto(i2+j)    ! WSM + THL manual modification for BPA EMTP
+         GOTO 3061
+ 3060   CONTINUE
+        n=0
+        read(hus1,7398) real8
+        call namea6(real8,n)
+        ILNTAB(KALIU+NIU)=n
+        IUTY(KIUTY+NIU)=isto(env+2)+89
+        env=isto(env+0)
+        GOTO 3051
+ 3050  CONTINUE
+       GOTO 5010
+ 5011 CONTINUE
+ 5010 CONTINUE
+      env=isto(sptr)
+      sptr=sptr+1
+      IF(NIU.GT.MAXNIU) STOP 'Kill 122 on MAXNIU in NTACS1B.'
+      KTAB=NUK+NIU
+      LSTAT(39)=30 + 3*NUK + 8*NIU
+      RETURN
+      END

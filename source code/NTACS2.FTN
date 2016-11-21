@@ -1,0 +1,99 @@
+      SUBROUTINE nTACS2
+      IMPLICIT REAL*8 (A-H, O-Z),  INTEGER*4 (I-N)
+      INCLUDE  'tacsto.ins'        
+      INCLUDE  'blkcom.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'tacsar.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'labcom.INS'                     ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B002 /   YKM   (   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B014 /   SPTACS(  29 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B063 /   TEXVEC(1000 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      CHARACTER*6  TEXVEC                   ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B064 /   BUS   (   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      CHARACTER*6  BUS                      ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B094 /   KMSWIT(   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B095 /   NEXTSW(   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B099 /   TCLOSE(   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B100 /   ADELAY(   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B102 /   NAMESW(   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B103 /   EMTPE (   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B104 /   EMTPF (   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC  EQUIVALENCE    ( MONCAR(32), KITACS ),    ( MONCAR(61),  LSWTCH )
+      character*6  hus1   ! WSM + THL manual modification for BPA EMTP
+      IF(.NOT.(NIU.GT.0)) GOTO 5020
+       i5=KUD1
+       DO 4010 i=1,NIU
+       i1 = IUTY(KIUTY+i)
+       k=ILNTAB(KLNTAB+NUK+i)
+       real8=texvec(k)
+       IF (i1.NE.90 .AND. i1.NE.94) GO TO 4012
+        DO 4020  J=2, NTOT
+         IF ( real8 .EQ. BUS(J)) GO TO 4018  ! WSM + THL manual modification for BPA EMTP
+ 4020   CONTINUE
+        WRITE(LUNIT6, 601) HUS1, HUS1
+  601   FORMAT(
+     1' TACS2 -- As found in a TACS INPUT',            /,
+     2'          the EMTP function "v(', A6,')" or "imssv(', A6,')"', /,
+     3'          refers to a non-existing node name',                 /,
+     4'          in the electrical network.')
+        CALL STOPTP
+ 4012  IF(i1.NE.91 .AND. i1.NE.93 .AND. i1.NE.95) GOTO 4010
+        DO 4030  j=1, KSWTCH
+C        k=NAMESW(j)
+C        IF (TEXVEC(k) .EQ. real8 ) GOTO 4018  ! WSM + THL manual modification for BPA EMTP
+        k = IABS ( KMSWIT(j) )
+        m = IABS ( KMSWIT(LSWTCH+j) )
+        IF ( real8 .EQ.BUS(k) .OR.         ! WSM + THL manual modification for BPA EMTP
+     1       real8 .EQ.BUS(M)) GO TO 4018  ! WSM + THL manual modification for BPA EMTP
+ 4030   CONTINUE
+        WRITE (LUNIT6, 602) HUS1, HUS1, HUS1
+  602   FORMAT(
+     1' TACS2 -- As found in a TACS INPUT',            /,
+     2'          the EMTP function "i(',      A6, ')"',               /,
+     3'                         or "switch(', A6, ')"',               /,
+     4'                         or "imssi(',  A6, ')"',               /,
+     5'          refers to a non-existing switch name or node name',  /,
+     6'          in the electrical network.')
+        CALL STOPTP
+ 4018  UD1(i5+2)=j
+ 4010  i5 = i5 + 5
+ 5020 CONTINUE
+      DO 4040 i=1,KTAB
+ 4040 XTCS(KXTCS+i)=zero
+      IF(.NOT.(NIU.GT.0)) GOTO 5030
+       i5=KUD1
+       DO 4080 i=1,NIU
+       i2=KXTCS+NUK+i
+       i1=IUTY(KIUTY+i)
+       k=UD1(i5+2)
+       i3=i1-89
+       GOTO(4090,4091,4092,4093,4094,4095), i3
+ 4090  XTCS(i2)=EMTPE(k)
+       GO TO 4080
+ 4091  IF (NEXTSW(k).EQ.87) XTCS(i2)=TCLOSE(k)
+       GO TO 4080
+ 4092  XTCS(i2)=YKM(k)
+       GO TO 4080
+ 4093  IF (NEXTSW(k).EQ.87) XTCS(i2)=one
+       GO TO 4080
+ 4094  XTCS(i2)=EMTPF(k)
+       GO TO 4080
+ 4095  XTCS(i2)=ADELAY(LSWTCH+k)
+ 4080  i5=i5+5
+ 5030 CONTINUE
+      etime=T
+      estop=TMAX+DELTAT/two
+      estep=DELTAT
+      to=9000
+      CALL elec
+CCCC      LSTAT(35)=cptr   ! WSM + THL manual modification for BPA EMTP
+CCCC      k=isto(ishenv+7) ! WSM + THL manual modification for BPA EMTP
+CCCC      MONCAR(32)=iptr+isto(k)*isto(k+1)   ! WSM + THL manual modification for BPA EMTP
+CCCC      k=isto(ishenv+8)                    ! WSM + THL manual modification for BPA EMTP
+CCCC      LSTAT(48)=rptr-rbase+isto(k)*isto(k+1)   ! WSM + THL manual modification for BPA EMTP
+      IF(.NOT.(etime+estep/two.GT.estop
+     1)) GOTO 5040
+       CLOSE(unit08)
+       CLOSE(bkfile)
+ 5040 CONTINUE
+      RETURN
+      END

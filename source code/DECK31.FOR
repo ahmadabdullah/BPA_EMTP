@@ -1,0 +1,1 @@
+      COMMON  / C29B01 /   KARRAY(1)

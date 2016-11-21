@@ -1,0 +1,45 @@
+      SUBROUTINE nTACS3
+      IMPLICIT REAL*8 (A-H, O-Z),  INTEGER*4 (I-N)
+      INCLUDE  'tacsto.ins'    
+      INCLUDE  'blkcom.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'tacsar.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'labcom.INS'                     ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B002 /   YKM   (   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B014 /   SPTACS(  29 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B099 /   TCLOSE(   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B101 /   KPOS  (   1 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B103 /   EMTPE (   1 )    ! WSM + THL manual modification for BPA EMTP
+      IF(.NOT.(NIU.GT.0)) GOTO 5000
+       i5=KUD1
+       DO 4080 i=1,NIU
+       i2=KXTCS+NUK+i
+       XTCS(i2)=FLZERO
+       i1=IUTY(KIUTY+i)
+       k=UD1(i5+2)
+       i6=iabs(KPOS(k))
+       i3=i1-89
+       GOTO(4090,4091,4092,4093,4080,4080), i3
+ 4090  XTCS(i2)=EMTPE(k)
+       GO TO 4080
+ 4091  IF (i6.LE.3) XTCS(i2)=TCLOSE(k)
+       GO TO 4080
+ 4092  XTCS(i2)=YKM(k)
+       GO TO 4080
+ 4093  IF (i6.LE.3) XTCS(i2)=UNITY
+ 4080  i5=i5+5
+ 5000 CONTINUE
+      etime=T
+      to=9000
+      CALL elec
+CCCC      LSTAT(35)=cptr   ! WSM + THL manual modification for BPA EMTP
+CCCC      k=isto(ishenv+7) ! WSM + THL manual modification for BPA EMTP
+CCCC      MONCAR(32)=iptr+isto(k)*isto(k+1)   ! WSM + THL manual modification for BPA EMTP
+CCCC      k=isto(ishenv+8)                    ! WSM + THL manual modification for BPA EMTP
+CCCC      LSTAT(48)=rptr-rbase+isto(k)*isto(k+1)   ! WSM + THL manual modification for BPA EMTP
+      IF(.NOT.(etime+estep/two.GT.estop
+     1)) GOTO 5010
+       CLOSE(unit08)
+       CLOSE(bkfile)
+ 5010 CONTINUE
+      RETURN
+      END

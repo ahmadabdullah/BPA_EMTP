@@ -1,0 +1,3 @@
+      COMMON   /COM2 /   N1, N2, N3, N4, LCOUNT, MODEL, L27DEP, IBR1    M39.  40
+      COMMON   /COM2 /   NRECUR,  KGROUP, NC4, NC5, IFQ, N13, IDA       M39.  41
+      COMMON   /COM2 /   IFKC, IDY, IDM, IDQ, IDU, IDT, IQ, NC6, NC3    M43.   1

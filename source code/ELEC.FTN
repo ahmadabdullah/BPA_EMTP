@@ -1,0 +1,339 @@
+      SUBROUTINE elec
+      IMPLICIT REAL*8 (A-H, O-Z),  INTEGER*4 (I-N)
+      INCLUDE  'tacsto.ins'
+      INCLUDE  'blkcom.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'tacsar.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'labcom.INS'                     ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B014 /   SPTACS(  29 )    ! WSM + THL manual modification for BPA EMTP
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=from
+                 from=0
+      GOTO ( 9000,
+     1 9001, 9002, 9003, 9004, 9005,
+     1 9006), to-8999
+      STOP 'Invalid "to" reference in "elec".'
+ 9500 IF(.NOT.(from.EQ.0)) GOTO 0001
+       from=isto(sptr)
+       sptr=sptr+1
+       RETURN
+ 0001 GOTO (
+     1 9501, 9502, 9503, 9504, 9505,
+     1 9506), from-9500
+      STOP 'Invalid "from" reference in "elec".'
+  910 stpflg=42
+      stpi1=iptr
+      stpi2=ilen-iptr
+      CONTINUE
+      CALL errstp
+ 9000 CONTINUE
+      IF(.NOT.(isto(env+3).EQ.0)) GOTO 5001
+       sptr=sptr-1
+       IF(sptr.EQ.iptr) GOTO 910
+       isto(sptr)=from
+       from=9501
+       GOTO 9001
+ 9501  from=isto(sptr)
+       sptr=sptr+1
+       GOTO 5000
+ 5001 CONTINUE
+ 5000 CONTINUE
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      to=9015
+      CALL use1
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=from
+      from=9502
+      GOTO 9002
+ 9502 from=isto(sptr)
+      sptr=sptr+1
+      sptr=sptr-1
+      isto(sptr)=env
+                 env=useenv
+      i0=isto(env+35)
+      i1=isto(env+38)-1
+      i=0
+ 3081 IF(.NOT.(i.LT.i0)) GOTO 3080
+       i=i+1
+       XTCS(KXTCS+i)=rsto(i1+i)
+       GOTO 3081
+ 3080 CONTINUE
+      env=isto(sptr)
+      sptr=sptr+1
+      GOTO 9500
+ 9001 CONTINUE
+      IF(.NOT.(isto(env+0).GT.0)) GOTO 5011
+       WRITE(UNIT08,800)
+  800  FORMAT('+     TIME        ')
+       sptr=sptr-1
+       IF(sptr.EQ.iptr) GOTO 910
+       isto(sptr)=env
+                  env=isto(env+1)
+ 3011  IF(.NOT.(env.GT.0)) GOTO 3010
+        i3=isto(env+4)
+        i2=isto(env+5)-1
+        i=0
+ 3061   IF(.NOT.(i.LT.i3)) GOTO 3060
+         i=i+1
+         cbuff(i:i)=csto(i2+i)
+         GOTO 3061
+ 3060   CONTINUE
+ 3071   IF(.NOT.(i.LT.6)) GOTO 3070
+         i=i+1
+         cbuff(i:i)=csto(64)
+         GOTO 3071
+ 3070   CONTINUE
+        WRITE(UNIT08,801) cbuff(1:6)
+  801   FORMAT('&     ',A6,'   ')
+        env=isto(env+0)
+        GOTO 3011
+ 3010  CONTINUE
+       env=isto(sptr)
+       sptr=sptr+1
+       WRITE(UNIT08,802)
+  802  FORMAT(1X)
+       GOTO 5010
+ 5011 CONTINUE
+ 5010 CONTINUE
+      GOTO 9500
+ 9002 CONTINUE
+      sptr=sptr-1
+      isto(sptr)=env
+                 env=isto(env+1)
+      IF(.NOT.(env.GT.0)) GOTO 5121
+       WRITE(UNIT08,803) etime
+  803  FORMAT(' ',G15.8,'  ')
+       GOTO 5120
+ 5121 CONTINUE
+ 5120 CONTINUE
+ 3021 IF(.NOT.(env.GT.0)) GOTO 3020
+       sptr=sptr-1
+       IF(sptr.EQ.iptr) GOTO 910
+       isto(sptr)=from
+       from=9503
+       GOTO 9003
+ 9503  from=isto(sptr)
+       sptr=sptr+1
+       env=isto(env+0)
+       GOTO 3021
+ 3020 CONTINUE
+      env=isto(sptr)
+      sptr=sptr+1
+      GOTO 9500
+ 9003 CONTINUE
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx0
+                 ndx0=isto(env+3)
+      IF(.NOT.(ndx0.GT.rptr)) GOTO 5021
+       sptr=sptr-1
+       IF(sptr.EQ.iptr) GOTO 910
+       isto(sptr)=from
+       from=9504
+       GOTO 9004
+ 9504  from=isto(sptr)
+       sptr=sptr+1
+       isto(env+3)=ndx0
+       GOTO 5020
+ 5021 CONTINUE
+ 5020 CONTINUE
+      IF(.NOT.(ndx0.LE.rptr)) GOTO 5031
+       a=rsto(ndx0)
+       WRITE(UNIT08,804) a
+  804  FORMAT('& ',G13.6)
+       GOTO 5030
+ 5031 CONTINUE
+       a=zero
+       WRITE(UNIT08,805)
+  805  FORMAT('&              ')
+ 5030 CONTINUE
+      k=isto(env+6)
+      XTCS(KXTCS+k)=a
+      ndx0=isto(sptr)
+      sptr=sptr+1
+      GOTO 9500
+ 9004 CONTINUE
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ptr0
+                 ptr0=isto(env+2)
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx3
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx4
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx
+      ndx3=isto(ptr0+1)
+      ndx4=isto(ptr0+2)
+      ndx=isto(ptr0+3)
+      IF(.NOT.(ndx3.EQ.4 .AND. ndx.EQ.iinf
+     1.AND. csto(ndx4).EQ.csto(20)
+     2.AND. csto(ndx4+1).EQ.csto(1)
+     3.AND. csto(ndx4+2).EQ.csto(3)
+     4.AND. csto(ndx4+3).EQ.csto(19)
+     5)) GOTO 5041
+       ptr0=isto(ptr0)
+       GOTO 5040
+ 5041 CONTINUE
+ 5040 CONTINUE
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=env
+                 env=useenv
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=lpflg
+                 lpflg=1
+ 3031 IF(.NOT.(lpflg.EQ.1)) GOTO 3030
+       ndx3=isto(ptr0+1)
+       ndx4=isto(ptr0+2)
+       ndx=isto(ptr0+3)
+       IF(.NOT.(isto(ptr0+0).GT.0)) GOTO 5051
+        sptr=sptr-1
+        IF(sptr.EQ.iptr) GOTO 910
+        isto(sptr)=from
+        from=9505
+        GOTO 9005
+ 9505   from=isto(sptr)
+        sptr=sptr+1
+        GOTO 5050
+ 5051  CONTINUE
+        lpflg=0
+        sptr=sptr-1
+        IF(sptr.EQ.iptr) GOTO 910
+        isto(sptr)=from
+        from=9506
+        GOTO 9006
+ 9506   from=isto(sptr)
+        sptr=sptr+1
+ 5050  CONTINUE
+       GOTO 3031
+ 3030 CONTINUE
+      lpflg=isto(sptr)
+      sptr=sptr+1
+      env=isto(sptr)
+      sptr=sptr+1
+      ndx=isto(sptr)
+      sptr=sptr+1
+      ndx4=isto(sptr)
+      sptr=sptr+1
+      ndx3=isto(sptr)
+      sptr=sptr+1
+      ptr0=isto(sptr)
+      sptr=sptr+1
+      GOTO 9500
+ 9005 CONTINUE
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=flg
+                 flg=0
+      env=isto(env+56)
+ 3041 IF(.NOT.(env.GT.0
+     1.AND. flg.EQ.0)) GOTO 3040
+       i3=isto(env+3)
+       IF(.NOT.(i3.EQ.ndx3
+     1 .AND. isto(env+5).EQ.ndx
+     2 )) GOTO 5061
+        i2=isto(env+4)
+        i=0
+ 3051   IF(.NOT.(i.LT.i3
+     1  .AND. csto(i2+i).EQ.csto(ndx4+i)
+     2  )) GOTO 3050
+         i=i+1
+         GOTO 3051
+ 3050   CONTINUE
+        IF(.NOT.(i.EQ.i3)) GOTO 5071
+         flg=1
+         GOTO 5070
+ 5071   CONTINUE
+         env=isto(env+0)
+ 5070   CONTINUE
+        GOTO 5060
+ 5061  CONTINUE
+        env=isto(env+0)
+ 5060  CONTINUE
+       GOTO 3041
+ 3040 CONTINUE
+      IF(.NOT.(flg.GT.0)) GOTO 5081
+       ptr0=isto(ptr0)
+       GOTO 5080
+ 5081 CONTINUE
+       lpflg=0
+ 5080 CONTINUE
+      flg=isto(sptr)
+      sptr=sptr+1
+      GOTO 9500
+ 9006 CONTINUE
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx0
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx1
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=ndx2
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=flg
+                 flg=0
+      sptr=sptr-1
+      IF(sptr.EQ.iptr) GOTO 910
+      isto(sptr)=env
+                 env=isto(env+9)
+      ndx0=isto(env+1)-2
+      ndx1=0
+      ndx2=isto(env+0)-isto(env+34)
+     1     -isto(env+23)
+      to=9003
+      CALL xref1
+      env=isto(sptr)
+      sptr=sptr+1
+      stpl1=ndx3
+      stpc1=ndx4
+      stpl2=isto(env+6)
+      stpc2=isto(env+7)
+      IF(.NOT.(flg.EQ.0)) GOTO 5091
+       stpflg=127
+       CONTINUE
+       CALL errstp
+       GOTO 5090
+ 5091 CONTINUE
+ 5090 CONTINUE
+      i3=isto(env+21)-1
+      i4=isto(env+53)-1
+      i5=isto(env+52)-1
+      i6=isto(env+54)-1
+      IF(.NOT.(ndx.LT.iinf)) GOTO 5101
+       i1=ndx
+       GOTO 5100
+ 5101 CONTINUE
+       IF(.NOT.(isto(i4+ndx1).EQ.1
+     1 .AND. isto(i6+ndx1).EQ.1
+     2 )) GOTO 5111
+        i1=1
+        GOTO 5110
+ 5111  CONTINUE
+        stpflg=128
+        CONTINUE
+        CALL errstp
+ 5110  CONTINUE
+ 5100 CONTINUE
+      k=i3+isto(i5+ndx1)
+     1     -isto(i4+ndx1)+i1
+      flg=isto(sptr)
+      sptr=sptr+1
+      ndx2=isto(sptr)
+      sptr=sptr+1
+      ndx1=isto(sptr)
+      sptr=sptr+1
+      ndx0=isto(sptr)
+      sptr=sptr+1
+      ndx0=k
+      GOTO 9500
+      END

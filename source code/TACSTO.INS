@@ -1,0 +1,242 @@
+      INTEGER*4 isto, strtbl
+      INTEGER*4 from, to
+      INTEGER*4 ilen, rlen, clen, iptr, rptr, cptr, sptr, rsptr, dptr
+      INTEGER*4 ibkptr, rbkptr, ishenv, env, useenv, datenv
+      INTEGER*4 xprndx, xprcnt, xprknd, xprsub
+      INTEGER*4 mflg, mndx
+      INTEGER*4 stpflg, stpi1, stpi2, stpi3, stpi4, stpi5
+      INTEGER*4 stpl1, stpc1, stpl2, stpc2
+      INTEGER*4 ptr0,ptr1,ptr2,ptr3,ptr4,ptr5,ptr6,ptr7,ptr8,ptr9,ptr10
+      INTEGER*4 ptr11,ptr12,ptr13,ptr14,ptr15,ptr16,ptr17,ptr18,ptr19
+      INTEGER*4 cnt0,cnt1,cnt2,cnt3,cnt4,cnt5,cnt6,cnt7,cnt8,cnt9,cnt10
+      INTEGER*4 cnt11,cnt12,cnt13,cnt14,cnt15,cnt16,cnt17,cnt18,cnt19
+      INTEGER*4 ndx0,ndx1,ndx2,ndx3,ndx4,ndx5,ndx6,ndx7,ndx8,ndx9,ndx10
+      INTEGER*4 ndx11,ndx12,ndx13,ndx14,ndx15,ndx16,ndx17,ndx18,ndx19
+      INTEGER*4 cnt, ndx, lpflg, flg, flg1, flg2, ipol, ipn
+      INTEGER*4 i,j,k,l,m,n
+      INTEGER*4 i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15
+      INTEGER*4 i16,i17,i18,i19
+      INTEGER*4 j0,j1,j2,j3,j4,j5,j6,j7,j8,j9
+      INTEGER*4 k0,k1,k2,k3,k4,k5,k6,k7,k8,k9
+      INTEGER*4 base1,base2,base3,base4,base5,base6,base7
+      INTEGER*4 base13,base14,base15,base16
+      INTEGER*4 iinf, inull
+      INTEGER*4 strcnt, ishcnt, intcnt, reacnt, iempty, rempty, ctblen
+      INTEGER*4 unit05, unit06, unit08, unit09, unit10
+      INTEGER*4 unit11, unit12, unit13, unit14, unit15
+      INTEGER*4 stoflt, stocha, fltlen, intlen, bkfile
+      INTEGER*4 pgsize, isize, rsize, csize, rbase
+      REAL*8 rspare, rsto
+      REAL*8 etime, estep, estop, bratio, split
+      REAL*8 ten, zero, one, two, half
+      REAL*8 p, stpt, stpr1, stpr2, stpr3
+      REAL*8 a, b, c, d, e, f, g
+      REAL*8 r0, r1, r2, r3, r4, r5, r6
+      REAL*8 rinf, rmargn, divzro, pi, rnull
+      CHARACTER*1 csto, char1
+      CHARACTER ctbl*1232, cbuff*256
+      DIMENSION isto(18000)
+      DIMENSION rsto(9000)
+      DIMENSION csto(9000)       ! WSM + THL manual modification for BPA EMTP
+C         stoflt and stocha are hard-dimensioned in data.ftn  
+      DIMENSION strtbl( 514 )
+      COMMON / CMRSTO / split, ten, zero, one, two, half,  ! WSM + THL manual modification for BPA EMTP
+     1                  p, stpt, stpr1, stpr2, stpr3,
+     2                  a, b, c, d, e, f, g,
+     3                  r0, r1, r2, r3, r4, r5, r6,
+     4                  rinf, rmargn, divzro, pi, rnull,
+     5                  bratio, etime, estep, estop, rspare(6),
+     6                  rsto
+      COMMON / CMCSTO / csto                               ! WSM + THL manual modification for BPA EMTP
+      EQUIVALENCE ( isto(1),    rsto(1) )
+      EQUIVALENCE ( csto(1),    ctbl    )
+      EQUIVALENCE ( csto(1233), cbuff   )
+      EQUIVALENCE ( csto(1500), char1   )
+      EQUIVALENCE ( strtbl(1),  isto(11))
+      EQUIVALENCE ( isto(594),  ibkptr )
+      EQUIVALENCE ( isto(595),  rbkptr )
+      EQUIVALENCE ( isto(596),  pgsize )
+      EQUIVALENCE ( isto(597),  isize  )
+      EQUIVALENCE ( isto(598),  rsize  )
+      EQUIVALENCE ( isto(599),  csize  )
+      EQUIVALENCE ( isto(600),  rbase   )
+      EQUIVALENCE ( isto(601),  from   )
+      EQUIVALENCE ( isto(602),  to     )
+      EQUIVALENCE ( isto(603),  ilen   )
+      EQUIVALENCE ( isto(604),  rlen   )
+      EQUIVALENCE ( isto(605),  clen   )
+      EQUIVALENCE ( isto(606),  iptr   )
+      EQUIVALENCE ( isto(607),  rptr   )
+      EQUIVALENCE ( isto(608),  cptr   )
+      EQUIVALENCE ( isto(609),  sptr   )
+      EQUIVALENCE ( isto(610),  rsptr  )
+      EQUIVALENCE ( isto(611),  dptr   )
+      EQUIVALENCE ( isto(613),  ishenv )
+      EQUIVALENCE ( isto(614),  env    )
+      EQUIVALENCE ( isto(615),  useenv )
+      EQUIVALENCE ( isto(616),  datenv )
+      EQUIVALENCE ( isto(617),  xprndx )
+      EQUIVALENCE ( isto(618),  xprcnt )
+      EQUIVALENCE ( isto(619),  xprknd )
+      EQUIVALENCE ( isto(620),  xprsub )
+      EQUIVALENCE ( isto(621),  mflg   )
+      EQUIVALENCE ( isto(622),  mndx   )
+      EQUIVALENCE ( isto(623),  stpflg )
+      EQUIVALENCE ( isto(624),  stpi1 )
+      EQUIVALENCE ( isto(625),  stpi2 )
+      EQUIVALENCE ( isto(626),  stpi3 )
+      EQUIVALENCE ( isto(627),  stpi4 )
+      EQUIVALENCE ( isto(628),  stpi5 )
+      EQUIVALENCE ( isto(629),  stpl1 )
+      EQUIVALENCE ( isto(630),  stpc1 )
+      EQUIVALENCE ( isto(631),  stpl2 )
+      EQUIVALENCE ( isto(632),  stpc2 )
+      EQUIVALENCE ( isto(633),  ptr0 )
+      EQUIVALENCE ( isto(634),  ptr1 )
+      EQUIVALENCE ( isto(635),  ptr2 )
+      EQUIVALENCE ( isto(636),  ptr3 )
+      EQUIVALENCE ( isto(637),  ptr4 )
+      EQUIVALENCE ( isto(638),  ptr5 )
+      EQUIVALENCE ( isto(639),  ptr6 )
+      EQUIVALENCE ( isto(640),  ptr7 )
+      EQUIVALENCE ( isto(641),  ptr8 )
+      EQUIVALENCE ( isto(642),  ptr9 )
+      EQUIVALENCE ( isto(643),  ptr10 )
+      EQUIVALENCE ( isto(644),  ptr11 )
+      EQUIVALENCE ( isto(645),  ptr12 )
+      EQUIVALENCE ( isto(646),  ptr13 )
+      EQUIVALENCE ( isto(647),  ptr14 )
+      EQUIVALENCE ( isto(648),  ptr15 )
+      EQUIVALENCE ( isto(649),  ptr16 )
+      EQUIVALENCE ( isto(650),  ptr17 )
+      EQUIVALENCE ( isto(651),  ptr18 )
+      EQUIVALENCE ( isto(652),  ptr19 )
+      EQUIVALENCE ( isto(653),  cnt0 )
+      EQUIVALENCE ( isto(654),  cnt1 )
+      EQUIVALENCE ( isto(655),  cnt2 )
+      EQUIVALENCE ( isto(656),  cnt3 )
+      EQUIVALENCE ( isto(657),  cnt4 )
+      EQUIVALENCE ( isto(658),  cnt5 )
+      EQUIVALENCE ( isto(659),  cnt6 )
+      EQUIVALENCE ( isto(660),  cnt7 )
+      EQUIVALENCE ( isto(661),  cnt8 )
+      EQUIVALENCE ( isto(662),  cnt9 )
+      EQUIVALENCE ( isto(663),  cnt10 )
+      EQUIVALENCE ( isto(664),  cnt11 )
+      EQUIVALENCE ( isto(665),  cnt12 )
+      EQUIVALENCE ( isto(666),  cnt13 )
+      EQUIVALENCE ( isto(667),  cnt14 )
+      EQUIVALENCE ( isto(668),  cnt15 )
+      EQUIVALENCE ( isto(669),  cnt16 )
+      EQUIVALENCE ( isto(670),  cnt17 )
+      EQUIVALENCE ( isto(671),  cnt18 )
+      EQUIVALENCE ( isto(672),  cnt19 )
+      EQUIVALENCE ( isto(673),  ndx0 )
+      EQUIVALENCE ( isto(674),  ndx1 )
+      EQUIVALENCE ( isto(675),  ndx2 )
+      EQUIVALENCE ( isto(676),  ndx3 )
+      EQUIVALENCE ( isto(677),  ndx4 )
+      EQUIVALENCE ( isto(678),  ndx5 )
+      EQUIVALENCE ( isto(679),  ndx6 )
+      EQUIVALENCE ( isto(680),  ndx7 )
+      EQUIVALENCE ( isto(681),  ndx8 )
+      EQUIVALENCE ( isto(682),  ndx9 )
+      EQUIVALENCE ( isto(683),  ndx10 )
+      EQUIVALENCE ( isto(684),  ndx11 )
+      EQUIVALENCE ( isto(685),  ndx12 )
+      EQUIVALENCE ( isto(686),  ndx13 )
+      EQUIVALENCE ( isto(687),  ndx14 )
+      EQUIVALENCE ( isto(688),  ndx15 )
+      EQUIVALENCE ( isto(689),  ndx16 )
+      EQUIVALENCE ( isto(690),  ndx17 )
+      EQUIVALENCE ( isto(691),  ndx18 )
+      EQUIVALENCE ( isto(692),  ndx19 )
+      EQUIVALENCE ( isto(693),  cnt )
+      EQUIVALENCE ( isto(694),  ndx )
+      EQUIVALENCE ( isto(695),  lpflg )
+      EQUIVALENCE ( isto(696),  flg )
+      EQUIVALENCE ( isto(697),  flg1 )
+      EQUIVALENCE ( isto(698),  flg2 )
+      EQUIVALENCE ( isto(699),  ipol )
+      EQUIVALENCE ( isto(700),  ipn )
+      EQUIVALENCE ( isto(701),  i )
+      EQUIVALENCE ( isto(702),  j )
+      EQUIVALENCE ( isto(703),  k )
+      EQUIVALENCE ( isto(704),  l )
+      EQUIVALENCE ( isto(705),  m )
+      EQUIVALENCE ( isto(706),  n )
+      EQUIVALENCE ( isto(707),  i0 )
+      EQUIVALENCE ( isto(708),  i1 )
+      EQUIVALENCE ( isto(709),  i2 )
+      EQUIVALENCE ( isto(710),  i3 )
+      EQUIVALENCE ( isto(711),  i4 )
+      EQUIVALENCE ( isto(712),  i5 )
+      EQUIVALENCE ( isto(713),  i6 )
+      EQUIVALENCE ( isto(714),  i7 )
+      EQUIVALENCE ( isto(715),  i8 )
+      EQUIVALENCE ( isto(716),  i9 )
+      EQUIVALENCE ( isto(717),  i10 )
+      EQUIVALENCE ( isto(718),  i11 )
+      EQUIVALENCE ( isto(719),  i12 )
+      EQUIVALENCE ( isto(720),  i13 )
+      EQUIVALENCE ( isto(721),  i14 )
+      EQUIVALENCE ( isto(722),  i15 )
+      EQUIVALENCE ( isto(723),  i16 )
+      EQUIVALENCE ( isto(724),  i17 )
+      EQUIVALENCE ( isto(725),  i18 )
+      EQUIVALENCE ( isto(726),  i19 )
+      EQUIVALENCE ( isto(727),  j0 )
+      EQUIVALENCE ( isto(728),  j1 )
+      EQUIVALENCE ( isto(729),  j2 )
+      EQUIVALENCE ( isto(730),  j3 )
+      EQUIVALENCE ( isto(731),  j4 )
+      EQUIVALENCE ( isto(732),  j5 )
+      EQUIVALENCE ( isto(733),  j6 )
+      EQUIVALENCE ( isto(734),  j7 )
+      EQUIVALENCE ( isto(735),  j8 )
+      EQUIVALENCE ( isto(736),  j9 )
+      EQUIVALENCE ( isto(737),  k0 )
+      EQUIVALENCE ( isto(738),  k1 )
+      EQUIVALENCE ( isto(739),  k2 )
+      EQUIVALENCE ( isto(740),  k3 )
+      EQUIVALENCE ( isto(741),  k4 )
+      EQUIVALENCE ( isto(742),  k5 )
+      EQUIVALENCE ( isto(743),  k6 )
+      EQUIVALENCE ( isto(744),  k7 )
+      EQUIVALENCE ( isto(745),  k8 )
+      EQUIVALENCE ( isto(746),  k9 )
+      EQUIVALENCE ( isto(747),  base1 )
+      EQUIVALENCE ( isto(748),  base2 )
+      EQUIVALENCE ( isto(749),  base3 )
+      EQUIVALENCE ( isto(750),  base4 )
+      EQUIVALENCE ( isto(751),  base5 )
+      EQUIVALENCE ( isto(752),  base6 )
+      EQUIVALENCE ( isto(753),  base7 )
+      EQUIVALENCE ( isto(755),  base13 )
+      EQUIVALENCE ( isto(756),  base14 )
+      EQUIVALENCE ( isto(757),  base15 )
+      EQUIVALENCE ( isto(758),  base16 )
+      EQUIVALENCE ( isto(759),  iinf   )
+      EQUIVALENCE ( isto(760),  inull )
+      EQUIVALENCE ( isto(761),  strcnt )
+      EQUIVALENCE ( isto(762),  ishcnt )
+      EQUIVALENCE ( isto(763),  intcnt )
+      EQUIVALENCE ( isto(764),  reacnt )
+      EQUIVALENCE ( isto(765),  iempty )
+      EQUIVALENCE ( isto(766),  rempty )
+      EQUIVALENCE ( isto(767),  ctblen )
+      EQUIVALENCE ( isto(768),  unit05 )
+      EQUIVALENCE ( isto(769),  unit06 )
+      EQUIVALENCE ( isto(770),  unit08 )
+      EQUIVALENCE ( isto(771),  unit09 )
+      EQUIVALENCE ( isto(772),  unit10 )
+      EQUIVALENCE ( isto(773),  unit11 )
+      EQUIVALENCE ( isto(774),  unit12 )
+      EQUIVALENCE ( isto(775),  unit13 )
+      EQUIVALENCE ( isto(776),  unit14 )
+      EQUIVALENCE ( isto(777),  unit15 )
+      EQUIVALENCE ( isto(778),  bkfile )
+      EQUIVALENCE ( isto(779),  fltlen )
+      EQUIVALENCE ( isto(780),  intlen )
+      EQUIVALENCE ( isto(781),  stoflt )
+      EQUIVALENCE ( isto(782),  stocha )

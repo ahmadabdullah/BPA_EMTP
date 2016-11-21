@@ -1,0 +1,42 @@
+      SUBROUTINE nTACS1
+      IMPLICIT REAL*8 (A-H, O-Z),  INTEGER*4 (I-N)
+      INCLUDE  'tacsto.ins'                  
+      INCLUDE  'blkcom.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'tacsar.for'                     ! WSM + THL manual modification for BPA EMTP
+      INCLUDE  'labcom.ins'                     ! WSM + THL manual modification for BPA EMTP
+CCCC      COMMON  / C0B014 /   SPTACS(  29 )    ! WSM + THL manual modification for BPA EMTP
+CCCC      EQUIVALENCE    ( MONCAR( 71),  LTACST ),  ( MONCAR(83),  NTCSEX ) ! WSM + THL manual modification for BPA EMTP
+      EQUIVALENCE    ( LSTAT ( 67),  MAXNIU ) 
+      EQUIVALENCE    ( LSTAT ( 68),  MAXNUK ) 
+      NTCSEX = 1
+      DO 2001 I=1,23
+ 2001 SPTACS(I)=0.0
+CCCC      LSTAT(48)=0    ! WSM + THL manual modification for BPA EMTP
+CCCC      MONCAR(32)=0       ! WSM + THL manual modification for BPA EMTP
+CCCC      LSTAT(35)=0        ! WSM + THL manual modification for BPA EMTP
+      MAXNUK=(LTACST-30)/11
+      MAXNIU=MAXNUK
+      write (*,*) ' In ntacs1, use:  ltacst =',  ltacst
+      DO 2002 I=61,66
+ 2002 LSTAT(I)=0
+      KUD1  =30
+      KIUTY =KUD1   +5*MAXNIU
+      KXTCS =KIUTY  +MAXNIU
+      KLNTAB=KXTCS  +MAXNUK +MAXNIU
+      KJOUT =KLNTAB +MAXNUK +MAXNIU
+CCCC      stoflt=MONCAR(27)   ! WSM + THL manual modification for BPA EMTP
+CCCC      stocha=MONCAR(29)   ! WSM + THL manual modification for BPA EMTP
+      CALL nTACS1A     ! WSM + THL manual modification for BPA EMTP
+      CALL nTACS1B     ! WSM + THL manual modification for BPA EMTP
+      IF(KTAB.LT.1) KTAB=1
+CCCC      MONCAR(24)=isize    ! WSM + THL manual modification for BPA EMTP
+CCCC      MONCAR(27)=rsize    ! WSM + THL manual modification for BPA EMTP
+CCCC      MONCAR(29)=csize    ! WSM + THL manual modification for BPA EMTP
+CCCC      LSTAT(35)=cptr      ! WSM + THL manual modification for BPA EMTP
+CCCC      k=isto(ishenv+7)    ! WSM + THL manual modification for BPA EMTP
+CCCC      MONCAR(32)=iptr+isto(k)*isto(k+1)       ! WSM + THL manual modification for BPA EMTP
+CCCC      k=isto(ishenv+8)                        ! WSM + THL manual modification for BPA EMTP
+CCCC      LSTAT(48)=rptr-rbase+isto(k)*isto(k+1)  ! WSM + THL manual modification for BPA EMTP
+      CALL CIMAGE
+      RETURN
+      END
